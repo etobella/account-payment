@@ -13,7 +13,7 @@ class CashInvoiceIn(models.TransientModel):
         active_model = self.env.context.get('active_model', False)
         if active_model:
             active_ids = self.env.context.get('active_ids', False)
-        return self.default_company(active_model, active_ids)
+            return self.default_company(active_model, active_ids)
         return None
 
     def _default_currency(self):
