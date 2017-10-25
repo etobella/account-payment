@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="account_statement_inter_company_form" model="ir.ui.view">
+        <field name="name">account.statement.inter.company.form</field>
+        <field name="model">account.statement.inter.company</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Inter company payment">
+                <group>
+                    <field name="name"/>
+                    <field name="reference"/>
+                    <field name="journal_id"
+                           class="oe_inline"
+                           options="{'no_create': True, 'no_open':True}"
+                    />
+                    <field name="company_id" readonly="1"/>
+                    <field name="inter_company_ids" invisible="1"/>
+                    <field name="destination_journal_id"
+                           class="oe_inline"
+                           options="{'no_create': True, 'no_open':True}"
+                    />
+                    <field name="destination_company_id" readonly="1"/>
+                    <label for="amount"/>
+                    <div>
+                        <field name="amount" class="oe_inline"/><field name="currency_id" class="oe_inline" groups="base.group_multi_currency"/>
+                    </div>
+                </group>
+                <footer>
+                    <button name="run" string="Register" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <act_window
+            id="action_account_statement_inter_company"
+            name="Inter company statement"
+            res_model="account.statement.inter.company"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+        />
+
+
+    <menuitem id="account_statement_inter_company_menu" name="Inter company Statements" parent="menu_inter_company" sequence="1" groups="account.group_account_manager" action="action_account_statement_inter_company" />
+
+
+</odoo>

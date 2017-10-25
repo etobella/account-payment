@@ -25,7 +25,7 @@ class ResCompany(models.Model):
     @api.depends('account_inter_company_ids')
     def _compute_inter_companies(self):
         for record in self:
-            ids = [record.id]
+            ids = []
             for inter_company in record.account_inter_company_ids:
                 if inter_company.related_company_id.inter_company_journal_id:
                     ids.append(inter_company.related_company_id.id)

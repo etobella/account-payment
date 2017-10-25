@@ -3,3 +3,4 @@
 
 from . import cash_invoice_in
 from . import cash_invoice_out
+from . import statement_inter_company

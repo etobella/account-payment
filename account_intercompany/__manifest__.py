@@ -11,14 +11,16 @@
     'license': 'LGPL-3',
     'data': [
         'security/ir.model.access.csv',
+        'views/account_menu.xml',
         'views/res_company_views.xml',
         'wizard/cash_invoice_in.xml',
         'wizard/cash_invoice_out.xml',
+        'wizard/statement_inter_company_view.xml',
     ],
     'demo': [
 
     ],
     "installable": True,
-    'application': True,
+    'application': False,
     'auto_install': False,
 }
