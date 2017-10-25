@@ -13,9 +13,11 @@
         'security/ir.model.access.csv',
         'views/account_menu.xml',
         'views/res_company_views.xml',
+        'views/account_inter_company_report.xml',
         'wizard/cash_invoice_in.xml',
         'wizard/cash_invoice_out.xml',
         'wizard/statement_inter_company_view.xml',
+        'wizard/account_report_inter_company_view.xml',
     ],
     'demo': [
 

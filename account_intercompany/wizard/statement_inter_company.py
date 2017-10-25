@@ -71,7 +71,6 @@ class InterCompanyStatement(models.TransientModel):
             'statement_id': statement.id,
         }
 
-
     def create_statement(self, journal, account, amount):
         statement = self.env['account.bank.statement'].create(
             self.inter_company_statement_values(journal)
@@ -84,7 +83,7 @@ class InterCompanyStatement(models.TransientModel):
         )
         statement.balance_end_real = statement.balance_end
         statement.check_confirm_bank()
-
+        return statement
 
     @api.multi
     def run(self):
@@ -93,11 +92,18 @@ class InterCompanyStatement(models.TransientModel):
             ('company_id', '=', self.company_id.id),
             ('related_company_id', '=', self.destination_company_id.id),
         ]).ensure_one()
-        self.create_statement(
+        statement_1 = self.create_statement(
             self.journal_id, inter_company.account_id, - self.amount
         )
-        self.create_statement(
+        statement_2 = self.create_statement(
             self.destination_journal_id,
             inter_company.related_account_id,
             self.amount
         )
+        result = {
+            "type": "ir.actions.act_window",
+            "res_model": "account.bank.statement",
+            "views": [[False, "tree"], [False, "form"]],
+            "domain": [["id", "in", [statement_1.id, statement_2.id]]],
+        }
+        return result
