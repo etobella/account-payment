@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                 <page string="Intercompany" groups="account.group_account_user">
+                     <group>
+                         <field name="inter_company_journal_id"/>
+                         <field name="account_inter_company_ids" context="{'default_company_id':active_id}"/>
+                     </group>
+                 </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="view_inter_company_tree" model="ir.ui.view">
+        <field name="name">account.inter.company.tree</field>
+        <field name="model">account.inter.company</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="related_company_id"/>
+                <field name="account_id"/>
+                <field name="related_account_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_inter_company_form" model="ir.ui.view">
+        <field name="name">account.inter.company.form</field>
+        <field name="model">account.inter.company</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="company_id" invisible="1"/>
+                    <field name="account_id"/>
+                    <field name="related_company_id"/>
+                    <field name="related_account_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>
